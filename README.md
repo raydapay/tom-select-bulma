@@ -126,7 +126,19 @@ src/tom-select.bulma.scss   the theme source (the only file you edit)
 dist/tom-select.bulma.css   compiled, distributable CSS (+ .min.css)
 docs/index.html             the live example gallery (GitHub Pages source)
 docs/tom-select.bulma.css   compiled copy the demo loads
+scripts/screenshots.sh      regenerates the README screenshots
 ```
+
+## Regenerating screenshots
+
+```bash
+npm run screenshots
+```
+
+Renders `docs/screenshot-{light,dark}.png` and `docs/screenshot-rtl-{light,dark}.png` with headless
+Chromium. The RTL shots use Arabic, so an Arabic font must be present — if none is found the script
+installs **Noto Sans Arabic** into `~/.local/share/fonts` (no sudo). Without it, Arabic renders as
+tofu boxes in the *screenshots only*; the theme itself is unaffected.
 
 ## Compared to the official Bootstrap 5 theme
 

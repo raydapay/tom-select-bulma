@@ -22,7 +22,8 @@
     "build:min": "sass --load-path=node_modules --no-source-map --silence-deprecation=import --style=compressed src/tom-select.bulma.scss dist/tom-select.bulma.min.css",
     "build:docs": "sass --load-path=node_modules --no-source-map --silence-deprecation=import src/tom-select.bulma.scss docs/tom-select.bulma.css",
     "watch": "sass --load-path=node_modules --watch --silence-deprecation=import src/tom-select.bulma.scss dist/tom-select.bulma.css",
-    "dist": "npm run build && npm run build:min && npm run build:docs"
+    "dist": "npm run build && npm run build:min && npm run build:docs",
+    "screenshots": "bash scripts/screenshots.sh"
   },
   "devDependencies": {
     "sass": "^1.77.0",
