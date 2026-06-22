@@ -195,6 +195,27 @@
 						</div>
 					</div>
 
+					<!-- Grouped with has-addons -->
+					<div class="column is-half">
+						<div class="box">
+							<p class="demo-label">Attached to a button</p>
+							<p class="demo-note">Inside <code>.field.has-addons</code> — corners square up.</p>
+							<div class="field has-addons">
+								<div class="control is-expanded">
+									<select id="addons" placeholder="Search…" autocomplete="off">
+										<option value="">Search…</option>
+										<option value="repo">Repository</option>
+										<option value="user">User</option>
+										<option value="issue">Issue</option>
+									</select>
+								</div>
+								<div class="control">
+									<button class="button is-primary">Go</button>
+								</div>
+							</div>
+						</div>
+					</div>
+
 					<!-- Disabled -->
 					<div class="column is-half">
 						<div class="box">
@@ -284,6 +305,7 @@
 				create: true,
 			});
 			new TomSelect('#icon', {});
+			new TomSelect('#addons', {});
 			new TomSelect('#disabled', {}); // Tom Select reads the disabled attr → .disabled wrapper
 			['#z1', '#z2', '#z3', '#z4'].forEach((s) => new TomSelect(s, {}));
 			['#c1', '#c2', '#c3'].forEach((s) => new TomSelect(s, {}));

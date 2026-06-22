@@ -474,6 +474,7 @@
   color: var(--bulma-text-weak, #7a7a7a);
   background-color: var(--bulma-scheme-main, #fff);
   font-weight: var(--bulma-weight-semibold, 600);
+  border-top: 1px solid var(--bulma-border, #dbdbdb);
 }
 
 .ts-wrapper.disabled .ts-control {
@@ -623,6 +624,33 @@
 
 .control.has-icons-right .icon {
   right: 0;
+}
+
+.field.has-addons .control:not(:first-child):not(:last-child) .ts-control {
+  border-radius: 0;
+}
+
+.field.has-addons .control:first-child:not(:only-child) .ts-control {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.field.has-addons .control:last-child:not(:only-child) .ts-control {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.field.has-addons .control.is-expanded {
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+
+.field.has-addons .control.is-expanded .ts-wrapper {
+  width: 100%;
+}
+
+.field.has-addons .ts-wrapper.focus {
+  z-index: 4;
 }
 
 .ts-wrapper.is-loading::after,

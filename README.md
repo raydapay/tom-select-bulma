@@ -113,6 +113,31 @@ docs/index.html             the live example gallery (GitHub Pages source)
 docs/tom-select.bulma.css   compiled copy the demo loads
 ```
 
+## Compared to the official Bootstrap 5 theme
+
+Tom Select's `bootstrap5` theme is the closest reference point. This theme aims for parity on
+everything that maps to a Bulma idiom, and goes further where Bulma offers more:
+
+| Feature | `bootstrap5` | `tom-select.bulma` | Notes |
+| --- | :---: | :---: | --- |
+| Core skin (colour / border / radius / padding) | ✓ | ✓ | We derive ours from `var(--bulma-*)`. |
+| **Dark mode** | ✗ | ✓ | BS5 is light-only unless you wire up Bootstrap's dark vars; ours follows `data-theme="dark"` automatically. |
+| Focus ring | ✓ | ✓ | |
+| Placeholder, transitions, shadow | ✓ | ✓ | |
+| Multi-select chips + `remove_button` | ✓ | ✓ | Ours render as Bulma tags. |
+| Sizes | sm, lg | small, **medium**, large | Bootstrap only has two sizes. |
+| Colour states | invalid / valid | all six `is-*` + `.invalid` | |
+| Disabled | ✓ | ✓ | |
+| Option-group headers + divider | ✓ | ✓ | |
+| `has-addons` / `input-group` grouping | ✓ | ✓ | Inner corners square up against the neighbour. |
+| Left / right **icon slots** | ✗ | ✓ | `has-icons-left` — not a Bootstrap idiom. |
+| **`is-loading` spinner** | ✗ | ✓ | Bulma-style ring on the control. |
+| Validation ✓/✗ **SVG icons**, `was-validated` | ✓ | — | N/A by design: Bulma signals validity with a coloured border (+ optional `help` text), which the `is-*` / `.invalid` states already cover. |
+| `form-control` vs `form-select` split | ✓ | — | N/A: Bulma has no two-class split for inputs vs selects. |
+
+The dash (`—`) rows are **not gaps** — they are Bootstrap-specific conventions with no Bulma
+equivalent, so reproducing them would look foreign in a Bulma page.
+
 ## Notes / limitations
 
 - Built against **Bulma 1.0** (CSS-variable era) and **Tom Select v2**.

@@ -155,6 +155,9 @@ $ts-bulma-colors: primary, link, info, success, warning, danger;
 	color: var(--bulma-text-weak, #7a7a7a);
 	background-color: var(--bulma-scheme-main, #fff);
 	font-weight: var(--bulma-weight-semibold, 600);
+	// Divider between option groups. The base already suppresses this on the
+	// first group via `.optgroup:first-child .optgroup-header { border-top: 0 }`.
+	border-top: 1px solid var(--bulma-border, #dbdbdb);
 }
 
 // --- Disabled --------------------------------------------------------------
@@ -267,6 +270,33 @@ $ts-bulma-colors: primary, link, info, success, warning, danger;
 }
 .control.has-icons-right .icon {
 	right: 0;
+}
+
+// --- Bulma .field.has-addons grouping ---------------------------------------
+// Square the inner corners so the control butts flush against an adjacent
+// control/button, mirroring how Bulma treats a native .input / .select.
+.field.has-addons .control:not(:first-child):not(:last-child) .ts-control {
+	border-radius: 0;
+}
+.field.has-addons .control:first-child:not(:only-child) .ts-control {
+	border-top-right-radius: 0;
+	border-bottom-right-radius: 0;
+}
+.field.has-addons .control:last-child:not(:only-child) .ts-control {
+	border-top-left-radius: 0;
+	border-bottom-left-radius: 0;
+}
+// Let an .is-expanded control grow, and its wrapper fill it.
+.field.has-addons .control.is-expanded {
+	flex-grow: 1;
+	flex-shrink: 1;
+}
+.field.has-addons .control.is-expanded .ts-wrapper {
+	width: 100%;
+}
+// Raise the focused control so its focus ring is not clipped by the neighbour.
+.field.has-addons .ts-wrapper.focus {
+	z-index: 4;
 }
 
 // --- Loading spinner (Bulma .is-loading; also Tom Select's own `.loading`) --
