@@ -186,10 +186,11 @@ $ts-bulma-colors: primary, link, info, success, warning, danger;
 	color: var(--bulma-link-invert, #fff);
 }
 
-// remove_button plugin: the × inside a chip.
+// remove_button plugin: the × inside a chip. Logical props so it flips in RTL.
 .ts-wrapper .item .remove {
-	margin-left: 0.375em;
-	padding: 0 0 0 0.375em;
+	margin-inline-start: 0.375em;
+	padding: 0;
+	padding-inline-start: 0.375em;
 	border: none;
 	border-radius: 0;
 	color: inherit;
@@ -278,13 +279,14 @@ $ts-bulma-colors: primary, link, info, success, warning, danger;
 .field.has-addons .control:not(:first-child):not(:last-child) .ts-control {
 	border-radius: 0;
 }
+// Logical radii so the squared corners flip correctly under dir="rtl".
 .field.has-addons .control:first-child:not(:only-child) .ts-control {
-	border-top-right-radius: 0;
-	border-bottom-right-radius: 0;
+	border-start-end-radius: 0;
+	border-end-end-radius: 0;
 }
 .field.has-addons .control:last-child:not(:only-child) .ts-control {
-	border-top-left-radius: 0;
-	border-bottom-left-radius: 0;
+	border-start-start-radius: 0;
+	border-end-start-radius: 0;
 }
 // Let an .is-expanded control grow, and its wrapper fill it.
 .field.has-addons .control.is-expanded {
@@ -307,7 +309,7 @@ $ts-bulma-colors: primary, link, info, success, warning, danger;
 	content: '';
 	position: absolute;
 	top: calc(50% - 0.5em);
-	right: 0.75em;
+	inset-inline-end: 0.75em; // flips to the left under dir="rtl"
 	z-index: 2; // sit above the opaque .ts-control background
 	display: block;
 	height: 1em;

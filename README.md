@@ -83,6 +83,21 @@ Nothing to configure. Toggle Bulma's theme as usual and the control follows:
 document.documentElement.setAttribute('data-theme', 'dark');
 ```
 
+## Right-to-left (RTL)
+
+Set `dir="rtl"` on a container (or the page) and everything flips — Tom Select adds its own
+`.rtl` class automatically, and this theme uses CSS **logical properties** so the `has-addons`
+corner-squaring and the loading spinner mirror correctly. Text alignment and the chip remove (`×`)
+follow suit.
+
+| RTL · Light | RTL · Dark |
+| --- | --- |
+| ![rtl light](docs/screenshot-rtl-light.png) | ![rtl dark](docs/screenshot-rtl-dark.png) |
+
+> `has-icons-left` / `has-icons-right` are **physical** by Bulma's own convention — a left icon
+> stays on the left in RTL. Pick the side you want; the control's padding follows the icon either
+> way.
+
 ## Live demo
 
 **→ https://raydapay.github.io/tom-select-bulma/**

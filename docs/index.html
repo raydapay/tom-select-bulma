@@ -255,6 +255,69 @@
 			</div>
 		</section>
 
+		<!-- Right-to-left (Arabic) showcase -->
+		<section class="section pt-0" dir="rtl" lang="ar">
+			<div class="container">
+				<h2 class="title is-4" style="text-align: start">اتجاه من اليمين إلى اليسار · RTL (Arabic)</h2>
+				<p class="subtitle is-6" style="text-align: start">
+					نفس المكوّن مع <code>dir="rtl"</code> — تنقلب المحاذاة والزوايا وموضع الدوّارة تلقائياً.
+				</p>
+				<div class="columns is-multiline">
+					<div class="column is-half">
+						<div class="box">
+							<p class="demo-label">قائمة مفردة + بحث</p>
+							<select id="r-single" placeholder="اختر إطار العمل…" autocomplete="off">
+								<option value="">اختر إطار العمل…</option>
+								<option value="flask">فلاسك</option>
+								<option value="django">دجانغو</option>
+								<option value="fastapi">فاست‑API</option>
+								<option value="rails">ريلز</option>
+							</select>
+						</div>
+					</div>
+					<div class="column is-half">
+						<div class="box">
+							<p class="demo-label">اختيار متعدد — وسوم</p>
+							<select id="r-multi" multiple placeholder="أضف اللغات…" autocomplete="off">
+								<option value="py" selected>بايثون</option>
+								<option value="js" selected>جافاسكريبت</option>
+								<option value="rb">روبي</option>
+								<option value="go">جو</option>
+							</select>
+						</div>
+					</div>
+					<div class="column is-half">
+						<div class="box">
+							<p class="demo-label">مع أيقونة (<code>has-icons-left</code>)</p>
+							<div class="control has-icons-left">
+								<select id="r-icon" placeholder="ابحث عن مستخدم…" autocomplete="off">
+									<option value="">ابحث عن مستخدم…</option>
+									<option value="a">أحمد</option>
+									<option value="f">فاطمة</option>
+								</select>
+								<span class="icon is-left"><i style="font-style: normal">@</i></span>
+							</div>
+						</div>
+					</div>
+					<div class="column is-half">
+						<div class="box">
+							<p class="demo-label">مرفق بزر (<code>has-addons</code>)</p>
+							<div class="field has-addons">
+								<div class="control is-expanded">
+									<select id="r-addons" placeholder="بحث…" autocomplete="off">
+										<option value="">بحث…</option>
+										<option value="repo">مستودع</option>
+										<option value="user">مستخدم</option>
+									</select>
+								</div>
+								<div class="control"><button class="button is-primary">انطلق</button></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
 		<footer class="footer">
 			<div class="content has-text-centered">
 				<p>
@@ -358,6 +421,13 @@
 			// Loading-state demo: toggle the Bulma .is-loading class on the wrapper.
 			const loadingTs = new TomSelect('#c4', {});
 			loadingTs.wrapper.classList.add('is-loading');
+
+			// RTL (Arabic) showcase — Tom Select reads the rtl direction off the
+			// element and adds its own .rtl class automatically.
+			new TomSelect('#r-single', {});
+			new TomSelect('#r-multi', { plugins: ['remove_button'] });
+			new TomSelect('#r-icon', {});
+			new TomSelect('#r-addons', {});
 		</script>
 	</body>
 </html>
