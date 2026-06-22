@@ -8,7 +8,9 @@ control, **including automatic light/dark theme support** via Bulma's CSS variab
 Tom Select ships `default`, `bootstrap4` and `bootstrap5` themes — but no Bulma one. This is that
 missing theme.
 
-![light mode](demo/screenshot-light.png)
+| Light | Dark |
+| --- | --- |
+| ![light mode](docs/screenshot-light.png) | ![dark mode](docs/screenshot-dark.png) |
 
 ## Why a theme, not a fork
 
@@ -79,17 +81,31 @@ Nothing to configure. Toggle Bulma's theme as usual and the control follows:
 document.documentElement.setAttribute('data-theme', 'dark');
 ```
 
-## Demo
+## Live demo
 
-Open [`demo/index.html`](demo/index.html) after `npm run build` — single/multi/remote/icon/size/colour
-examples plus a dark-mode toggle.
+The full example gallery — single / multi / option groups / tagging / remote / custom
+rendering / icons / sizes / colours / loading, with a light–dark–auto theme switcher — lives in
+[`docs/index.html`](docs/index.html). Open it in a browser (it loads Bulma and Tom Select from a
+CDN), or serve it locally:
+
+```bash
+npm run build:docs           # compile the theme into docs/
+npx serve docs               # or any static server, then open the printed URL
+```
+
+### Hosting it on GitHub Pages
+
+The `docs/` folder is a self-contained, Pages-ready site. To publish it: in the repo's
+**Settings → Pages**, set the source to **`main` / `docs`**. Note GitHub Pages on a **private**
+repo requires a paid plan (Pro/Team/Enterprise); on a free account, make the repo public first.
 
 ## Project layout
 
 ```
 src/tom-select.bulma.scss   the theme source (the only file you edit)
 dist/tom-select.bulma.css   compiled, distributable CSS (+ .min.css)
-demo/index.html             live examples
+docs/index.html             the live example gallery (GitHub Pages source)
+docs/tom-select.bulma.css   compiled copy the demo loads
 ```
 
 ## Notes / limitations

@@ -31,11 +31,12 @@
 //    these, verified against the v2 SCSS source).
 // ---------------------------------------------------------------------------
 
-// Typography — size is `1em` so it inherits the wrapper; the size modifiers
-// below scale the whole control by setting font-size on .ts-wrapper.
-$select-font-family:							inherit;
+// Typography — track Bulma's type tokens. font-size stays `1em` so it inherits
+// the wrapper and the size modifiers below scale the whole control by setting
+// font-size on .ts-wrapper.
+$select-font-family:							var(--bulma-family-primary, inherit);
 $select-font-size:								1em;
-$select-line-height:							1.5;
+$select-line-height:							var(--bulma-body-line-height, 1.5);
 
 // Box model — mirrors Bulma's control metrics.
 $select-border-width:							var(--bulma-input-border-width, 1px);
@@ -277,6 +278,7 @@ $ts-bulma-colors: primary, link, info, success, warning, danger;
 	position: absolute;
 	top: calc(50% - 0.5em);
 	right: 0.75em;
+	z-index: 2; // sit above the opaque .ts-control background
 	display: block;
 	height: 1em;
 	width: 1em;

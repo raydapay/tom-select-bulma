@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>tom-select.bulma — live demo</title>
+		<meta
+			name="description"
+			content="A Bulma theme for Tom Select — search, multi-select, tagging and remote loading with a native Bulma look and light/dark support."
+		/>
+
+		<!-- Bulma -->
+		<link
+			rel="stylesheet"
+			href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css"
+		/>
+		<!-- The Bulma theme for Tom Select (self-contained: base + skin) -->
+		<link rel="stylesheet" href="./tom-select.bulma.css" />
+		<!-- Tom Select behaviour -->
+		<script src="https://cdn.jsdelivr.net/npm/tom-select@2.6.1/dist/js/tom-select.complete.min.js"></script>
+
+		<style>
+			html {
+				scroll-behavior: smooth;
+			}
+			.section {
+				padding-top: 2rem;
+			}
+			.box {
+				height: 100%;
+			}
+			.demo-label {
+				font-weight: 600;
+				margin-bottom: 0.25rem;
+			}
+			.demo-note {
+				color: var(--bulma-text-weak);
+				font-size: 0.85rem;
+				margin-bottom: 0.75rem;
+			}
+			.theme-switch .button.is-active {
+				background-color: var(--bulma-link);
+				color: var(--bulma-link-invert);
+				border-color: var(--bulma-link);
+			}
+			/* avatar dot used by the custom-render example */
+			.opt-dot {
+				display: inline-block;
+				width: 0.75em;
+				height: 0.75em;
+				border-radius: 9999px;
+				margin-right: 0.5em;
+				vertical-align: middle;
+			}
+		</style>
+	</head>
+	<body>
+		<!-- Top bar with theme switcher -->
+		<nav class="navbar is-spaced" role="navigation">
+			<div class="navbar-brand px-4">
+				<span class="navbar-item title is-5 mb-0">tom-select<span class="has-text-link">.bulma</span></span>
+			</div>
+			<div class="navbar-end">
+				<div class="navbar-item">
+					<div class="buttons has-addons theme-switch" id="theme-switch">
+						<button class="button is-small" data-theme-choice="light">☀︎ Light</button>
+						<button class="button is-small" data-theme-choice="auto">Auto</button>
+						<button class="button is-small" data-theme-choice="dark">☾ Dark</button>
+					</div>
+				</div>
+				<div class="navbar-item">
+					<a class="button is-small is-link is-light" href="https://tom-select.js.org" target="_blank" rel="noopener">Tom Select docs ↗</a>
+				</div>
+			</div>
+		</nav>
+
+		<section class="hero is-small">
+			<div class="hero-body">
+				<p class="title">A Bulma theme for Tom Select</p>
+				<p class="subtitle">
+					Every Tom Select feature — search, multi-select, tagging, option groups, remote
+					loading, custom rendering — wearing Bulma, and tracking the light/dark toggle above.
+				</p>
+			</div>
+		</section>
+
+		<section class="section pt-0">
+			<div class="container">
+				<div class="columns is-multiline">
+					<!-- Single + search -->
+					<div class="column is-half">
+						<div class="box">
+							<p class="demo-label">Single select + search</p>
+							<p class="demo-note">Type to filter; clear button enabled.</p>
+							<select id="single" placeholder="Pick a framework…" autocomplete="off">
+								<option value="">Pick a framework…</option>
+								<option value="flask">Flask</option>
+								<option value="django">Django</option>
+								<option value="fastapi">FastAPI</option>
+								<option value="rails">Rails</option>
+								<option value="laravel">Laravel</option>
+								<option value="express">Express</option>
+								<option value="spring">Spring</option>
+							</select>
+						</div>
+					</div>
+
+					<!-- Multi + remove + max -->
+					<div class="column is-half">
+						<div class="box">
+							<p class="demo-label">Multi-select — chips as Bulma tags</p>
+							<p class="demo-note"><code>remove_button</code> plugin, max 4 items.</p>
+							<select id="multi" multiple placeholder="Add languages…" autocomplete="off">
+								<option value="py">Python</option>
+								<option value="js">JavaScript</option>
+								<option value="ts">TypeScript</option>
+								<option value="rs">Rust</option>
+								<option value="go">Go</option>
+								<option value="rb">Ruby</option>
+								<option value="kt">Kotlin</option>
+							</select>
+						</div>
+					</div>
+
+					<!-- Option groups -->
+					<div class="column is-half">
+						<div class="box">
+							<p class="demo-label">Option groups</p>
+							<p class="demo-note">Grouped + searchable.</p>
+							<select id="optgroups" placeholder="Pick a city…" autocomplete="off">
+								<option value="">Pick a city…</option>
+								<optgroup label="Europe">
+									<option value="ber">Berlin</option>
+									<option value="par">Paris</option>
+									<option value="lis">Lisbon</option>
+								</optgroup>
+								<optgroup label="Asia">
+									<option value="tok">Tokyo</option>
+									<option value="sin">Singapore</option>
+								</optgroup>
+								<optgroup label="Americas">
+									<option value="nyc">New York</option>
+									<option value="sao">São Paulo</option>
+								</optgroup>
+							</select>
+						</div>
+					</div>
+
+					<!-- Tagging / create -->
+					<div class="column is-half">
+						<div class="box">
+							<p class="demo-label">Tagging with create-on-the-fly</p>
+							<p class="demo-note">Type a new value and press enter.</p>
+							<select id="tags" multiple placeholder="Type to add tags…" autocomplete="off"></select>
+						</div>
+					</div>
+
+					<!-- Remote / async with spinner -->
+					<div class="column is-half">
+						<div class="box">
+							<p class="demo-label">Remote data (async)</p>
+							<p class="demo-note">Simulated latency — shows the loading spinner.</p>
+							<select id="remote" placeholder="Search GitHub-ish repos…" autocomplete="off"></select>
+						</div>
+					</div>
+
+					<!-- Custom render -->
+					<div class="column is-half">
+						<div class="box">
+							<p class="demo-label">Custom option rendering</p>
+							<p class="demo-note">Render templates with custom markup.</p>
+							<select id="render" placeholder="Pick a status…" autocomplete="off">
+								<option value="open" data-color="hsl(141,53%,53%)">Open · ready for work</option>
+								<option value="prog" data-color="hsl(48,89%,57%)">In progress · being worked on</option>
+								<option value="done" data-color="hsl(229,53%,53%)">Done · shipped</option>
+								<option value="block" data-color="hsl(348,86%,61%)">Blocked · needs attention</option>
+							</select>
+						</div>
+					</div>
+
+					<!-- Icon -->
+					<div class="column is-half">
+						<div class="box">
+							<p class="demo-label">With a Bulma left icon</p>
+							<p class="demo-note"><code>.control.has-icons-left</code> + <code>.icon.is-left</code>.</p>
+							<div class="control has-icons-left">
+								<select id="icon" placeholder="Search users…" autocomplete="off">
+									<option value="">Search users…</option>
+									<option value="ada">Ada Lovelace</option>
+									<option value="alan">Alan Turing</option>
+									<option value="grace">Grace Hopper</option>
+								</select>
+								<span class="icon is-left"><i style="font-style: normal">@</i></span>
+							</div>
+						</div>
+					</div>
+
+					<!-- Disabled -->
+					<div class="column is-half">
+						<div class="box">
+							<p class="demo-label">Disabled</p>
+							<p class="demo-note">Bound to a disabled <code>&lt;select&gt;</code>.</p>
+							<select id="disabled" disabled autocomplete="off">
+								<option value="a" selected>Can't touch this</option>
+								<option value="b">B</option>
+							</select>
+						</div>
+					</div>
+
+					<!-- Sizes -->
+					<div class="column is-half">
+						<div class="box">
+							<p class="demo-label">Sizes</p>
+							<p class="demo-note"><code>is-small</code> / default / <code>is-medium</code> / <code>is-large</code>.</p>
+							<div class="mb-2"><select class="is-small" id="z1" placeholder="Small"><option>Small</option><option>Option B</option></select></div>
+							<div class="mb-2"><select id="z2" placeholder="Normal"><option>Normal</option><option>Option B</option></select></div>
+							<div class="mb-2"><select class="is-medium" id="z3" placeholder="Medium"><option>Medium</option><option>Option B</option></select></div>
+							<div><select class="is-large" id="z4" placeholder="Large"><option>Large</option><option>Option B</option></select></div>
+						</div>
+					</div>
+
+					<!-- Colours + loading -->
+					<div class="column is-half">
+						<div class="box">
+							<p class="demo-label">Colour states &amp; loading</p>
+							<p class="demo-note"><code>is-primary</code> … <code>is-danger</code>, plus <code>is-loading</code>.</p>
+							<div class="mb-2"><select class="is-primary" id="c1" placeholder="is-primary"><option>Primary</option><option>B</option></select></div>
+							<div class="mb-2"><select class="is-success" id="c2" placeholder="is-success"><option>Success</option><option>B</option></select></div>
+							<div class="mb-2"><select class="is-danger" id="c3" placeholder="is-danger"><option>Danger</option><option>B</option></select></div>
+							<div><select id="c4" placeholder="loading…"><option>loading…</option><option>B</option></select></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<footer class="footer">
+			<div class="content has-text-centered">
+				<p>
+					<strong>tom-select.bulma</strong> — MIT. Built with
+					<a href="https://bulma.io">Bulma</a> &amp;
+					<a href="https://tom-select.js.org">Tom Select</a>.
+				</p>
+			</div>
+		</footer>
+
+		<script>
+			/* ---- Theme switcher (light / dark / auto), persisted ---- */
+			(function () {
+				const KEY = 'ts-bulma-theme';
+				const root = document.documentElement;
+				const mq = window.matchMedia('(prefers-color-scheme: dark)');
+				const buttons = document.querySelectorAll('[data-theme-choice]');
+
+				function apply(choice) {
+					const dark = choice === 'dark' || (choice === 'auto' && mq.matches);
+					root.setAttribute('data-theme', dark ? 'dark' : 'light');
+					buttons.forEach((b) =>
+						b.classList.toggle('is-active', b.dataset.themeChoice === choice)
+					);
+				}
+				let choice = localStorage.getItem(KEY) || 'auto';
+				apply(choice);
+				buttons.forEach((b) =>
+					b.addEventListener('click', () => {
+						choice = b.dataset.themeChoice;
+						localStorage.setItem(KEY, choice);
+						apply(choice);
+					})
+				);
+				mq.addEventListener('change', () => {
+					if (choice === 'auto') apply('auto');
+				});
+			})();
+
+			/* ---- Tom Select instances ---- */
+			new TomSelect('#single', {});
+			new TomSelect('#multi', { plugins: ['remove_button'], maxItems: 4 });
+			new TomSelect('#optgroups', {});
+			new TomSelect('#tags', {
+				plugins: ['remove_button'],
+				persist: false,
+				createOnBlur: true,
+				create: true,
+			});
+			new TomSelect('#icon', {});
+			new TomSelect('#disabled', {}); // Tom Select reads the disabled attr → .disabled wrapper
+			['#z1', '#z2', '#z3', '#z4'].forEach((s) => new TomSelect(s, {}));
+			['#c1', '#c2', '#c3'].forEach((s) => new TomSelect(s, {}));
+
+			// Custom rendering with a colour dot + secondary text.
+			new TomSelect('#render', {
+				render: {
+					option: function (data, escape) {
+						const [main, sub] = data.text.split(' · ');
+						return (
+							'<div><span class="opt-dot" style="background:' +
+							escape(data.$option.dataset.color) +
+							'"></span><strong>' +
+							escape(main) +
+							'</strong>' +
+							(sub ? ' <span class="has-text-weight-light">' + escape(sub) + '</span>' : '') +
+							'</div>'
+						);
+					},
+					item: function (data, escape) {
+						return (
+							'<div><span class="opt-dot" style="background:' +
+							escape(data.$option.dataset.color) +
+							'"></span>' +
+							escape(data.text.split(' · ')[0]) +
+							'</div>'
+						);
+					},
+				},
+			});
+
+			// Simulated remote loading (no real network) — demonstrates the spinner.
+			const REPOS = [
+				'bulma', 'tom-select', 'flask', 'django', 'fastapi', 'react', 'vue',
+				'svelte', 'rails', 'laravel', 'express', 'spring-boot', 'tailwindcss',
+			];
+			new TomSelect('#remote', {
+				valueField: 'name',
+				labelField: 'name',
+				searchField: 'name',
+				load: function (query, callback) {
+					const self = this;
+					setTimeout(function () {
+						const q = query.toLowerCase();
+						callback(REPOS.filter((n) => n.includes(q)).map((n) => ({ name: n })));
+					}, 600);
+				},
+			});
+
+			// Loading-state demo: toggle the Bulma .is-loading class on the wrapper.
+			const loadingTs = new TomSelect('#c4', {});
+			loadingTs.wrapper.classList.add('is-loading');
+		</script>
+	</body>
+</html>
