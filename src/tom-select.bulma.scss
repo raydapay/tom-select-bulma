@@ -1,0 +1,301 @@
+/*!
+ * tom-select.bulma.css
+ * A Bulma theme for Tom Select.
+ *
+ * Strategy
+ * --------
+ * 1. Feed Bulma's runtime CSS custom properties (var(--bulma-*)) straight into
+ *    Tom Select's own `!default` SCSS variables. Because Tom Select's base rules
+ *    are written in terms of those variables, the compiled structure ends up
+ *    referencing Bulma tokens directly — so colours track Bulma's theme,
+ *    including the data-theme="dark" toggle, with no extra rules.
+ *
+ * 2. The ONLY exceptions are the four colour variables that Tom Select passes
+ *    through Sass colour functions (color.adjust / color.change) in
+ *    _items.scss, remove_button.scss and dropdown_header.scss. A var() string
+ *    cannot be the argument of a Sass colour function, so those four stay real
+ *    colours (Bulma's light-theme hexes, used only as the no-Bulma fallback) and
+ *    are re-skinned for dark mode in the integration layer at the bottom.
+ *
+ * 3. A final layer adds the things the base does not parametrise: the Bulma
+ *    focus ring, size modifiers (is-small/medium/large), colour states
+ *    (is-primary … is-danger + .invalid), .control icon slots, an is-loading
+ *    spinner, and Bulma-tag-styled multi-select chips.
+ *
+ * Every colour below is a var(--bulma-*) with a hard-coded Bulma-light fallback,
+ * so the theme degrades gracefully if loaded without Bulma present.
+ */
+
+// ---------------------------------------------------------------------------
+// 1. Variables fed straight into Tom Select (var() — no Sass colour fn touches
+//    these, verified against the v2 SCSS source).
+// ---------------------------------------------------------------------------
+
+// Typography — size is `1em` so it inherits the wrapper; the size modifiers
+// below scale the whole control by setting font-size on .ts-wrapper.
+$select-font-family:							inherit;
+$select-font-size:								1em;
+$select-line-height:							1.5;
+
+// Box model — mirrors Bulma's control metrics.
+$select-border-width:							var(--bulma-input-border-width, 1px);
+$select-border-radius:							var(--bulma-radius, 0.375em);
+$select-padding-x:								0.75em;
+$select-padding-y:								0.5em;
+$select-padding-item-x:							0.75em;
+$select-padding-item-y:							0;
+$select-padding-dropdown-item-x:				1em;
+$select-padding-dropdown-item-y:				0.5em;
+$select-margin-item-x:							0.25em;
+$select-margin-item-y:							0.25em;
+$select-max-height-dropdown:					15rem;
+$select-arrow-size:								0.3125em;
+$select-arrow-offset:							1.125em;
+$select-spinner-size:							1.5em;
+
+// Colours that are NOT passed through Sass colour functions → safe as var().
+$select-color-border:							var(--bulma-border, #dbdbdb);
+$select-color-input:							var(--bulma-scheme-main, #fff);
+$select-color-input-full:						var(--bulma-scheme-main, #fff);
+$select-color-disabled:							var(--bulma-input-disabled-background-color, #f5f5f5);
+$select-color-highlight:						var(--bulma-warning-soft, rgba(125, 168, 208, 0.2));
+$select-color-item-active:						var(--bulma-link, #485fc7);
+$select-color-item-active-text:					var(--bulma-link-invert, #fff);
+$select-color-item-active-border:				var(--bulma-link, #485fc7);
+$select-color-dropdown:							var(--bulma-scheme-main, #fff);
+$select-color-dropdown-border:					var(--bulma-border, #dbdbdb);
+$select-color-dropdown-border-top:				var(--bulma-border-weak, #f0f0f0);
+$select-color-dropdown-item-active:				var(--bulma-background, #f5f5f5);
+$select-color-dropdown-item-active-text:		var(--bulma-text-strong, #363636);
+$select-color-dropdown-item-create-text:		var(--bulma-text-weak, #7a7a7a);
+$select-color-dropdown-item-create-active-text:	var(--bulma-text-strong, #363636);
+$select-color-optgroup:							var(--bulma-scheme-main, #fff);
+$select-color-optgroup-text:					var(--bulma-text-weak, #7a7a7a);
+$select-arrow-color:							var(--bulma-input-arrow, var(--bulma-link, #485fc7));
+$select-spinner-border-color:					var(--bulma-border, #dbdbdb);
+$select-shadow-input:							var(--bulma-input-shadow, none);
+$select-shadow-input-focus:						none; // handled by the focus-ring rule below
+
+// The four colours Tom Select runs through Sass colour functions: must be real
+// colours. Bulma-light values; re-skinned for dark mode in the layer below.
+$select-color-text:								#363636; // --bulma-text-strong (light)
+$select-color-item:								#f5f5f5; // --bulma-tag-background-color (light)
+$select-color-item-text:						#4a4a4a; // --bulma-tag-color (light)
+$select-color-item-border:						transparent;
+$select-width-item-border:						0;
+
+// ---------------------------------------------------------------------------
+// Pull in Tom Select's structure + base skin, now parametrised by Bulma tokens.
+// (Resolved via `sass --load-path=node_modules`.)
+// ---------------------------------------------------------------------------
+@import 'tom-select/dist/scss/tom-select';
+
+// ---------------------------------------------------------------------------
+// 2 + 3. Bulma runtime integration layer.
+// ---------------------------------------------------------------------------
+
+$ts-bulma-colors: primary, link, info, success, warning, danger;
+
+// --- Control: sit flush inside Bulma's box model ---------------------------
+.ts-control {
+	min-height: var(--bulma-control-height, 2.5em);
+	align-items: center;
+	transition:
+		border-color 0.2s ease-out,
+		box-shadow 0.2s ease-out;
+	// dark-mode-correct text colour (the static $select-color-text fallback
+	// above only applies when Bulma is absent).
+	color: var(--bulma-text-strong, #363636);
+	border-color: var(--bulma-border, #dbdbdb);
+}
+
+.ts-control input,
+.ts-dropdown {
+	color: var(--bulma-text-strong, #363636);
+}
+
+.ts-control input::placeholder {
+	color: var(--bulma-input-placeholder-color, #7a7a7a);
+	opacity: 1;
+}
+
+// Hover — Bulma darkens the border on hover.
+.ts-wrapper:not(.disabled):not(.focus):not(.input-active) .ts-control:hover {
+	border-color: var(--bulma-input-hover-border-color, #b5b5b5);
+}
+
+// --- Focus ring (Bulma style) ----------------------------------------------
+.ts-wrapper.focus .ts-control {
+	border-color: var(--bulma-input-focus-border-color, var(--bulma-link, #485fc7));
+	box-shadow: 0 0 0 var(--bulma-input-focus-shadow-size, 0.125em)
+		var(
+			--bulma-input-focus-shadow-color,
+			hsla(var(--bulma-link-h, 229), var(--bulma-link-s, 53%), var(--bulma-link-l, 53%), 0.25)
+		);
+}
+
+// --- Dropdown panel --------------------------------------------------------
+.ts-dropdown {
+	background-color: var(--bulma-scheme-main, #fff);
+	border-color: var(--bulma-border, #dbdbdb);
+	box-shadow: var(
+		--bulma-dropdown-content-shadow,
+		0 0.5em 1em -0.125em rgba(10, 10, 10, 0.1),
+		0 0 0 1px rgba(10, 10, 10, 0.02)
+	);
+}
+
+.ts-dropdown .active {
+	background-color: var(--bulma-background, #f5f5f5);
+	color: var(--bulma-text-strong, #363636);
+}
+
+.ts-dropdown .optgroup-header {
+	color: var(--bulma-text-weak, #7a7a7a);
+	background-color: var(--bulma-scheme-main, #fff);
+	font-weight: var(--bulma-weight-semibold, 600);
+}
+
+// --- Disabled --------------------------------------------------------------
+.ts-wrapper.disabled .ts-control {
+	background-color: var(--bulma-input-disabled-background-color, #f5f5f5);
+	border-color: var(--bulma-input-disabled-border-color, #dbdbdb);
+	color: var(--bulma-input-disabled-color, #7a7a7a);
+}
+
+// --- Multi-select chips styled as Bulma tags -------------------------------
+.ts-wrapper.multi .ts-control > .item {
+	display: inline-flex;
+	align-items: center;
+	height: 2em;
+	padding: 0 0.75em;
+	font-size: 0.875em;
+	line-height: 1.5;
+	background-color: var(--bulma-tag-background-color, #f5f5f5);
+	color: var(--bulma-tag-color, #4a4a4a);
+	border: none;
+	border-radius: var(--bulma-tag-radius, var(--bulma-radius, 0.375em));
+}
+
+.ts-wrapper.multi .ts-control > .item.active {
+	background-color: var(--bulma-link, #485fc7);
+	color: var(--bulma-link-invert, #fff);
+}
+
+// remove_button plugin: the × inside a chip.
+.ts-wrapper .item .remove {
+	margin-left: 0.375em;
+	padding: 0 0 0 0.375em;
+	border: none;
+	border-radius: 0;
+	color: inherit;
+	opacity: 0.5;
+}
+
+.ts-wrapper .item .remove:hover {
+	background: transparent;
+	opacity: 1;
+}
+
+// --- Size modifiers (font-size cascades to control, input and dropdown,
+//     and the em-based metrics scale with it) --------------------------------
+.ts-wrapper.is-small {
+	font-size: 0.75rem;
+}
+.ts-wrapper.is-normal {
+	font-size: 1rem;
+}
+.ts-wrapper.is-medium {
+	font-size: 1.25rem;
+}
+.ts-wrapper.is-large {
+	font-size: 1.5rem;
+}
+
+// --- Rounded ---------------------------------------------------------------
+.ts-wrapper.is-rounded .ts-control {
+	border-radius: var(--bulma-radius-rounded, 9999px);
+	padding-left: 1.25em;
+	padding-right: 1.25em;
+}
+
+// --- Colour state modifiers ------------------------------------------------
+@each $name in $ts-bulma-colors {
+	.ts-wrapper.is-#{$name} .ts-control {
+		border-color: var(--bulma-#{$name}, var(--bulma-border));
+	}
+
+	.ts-wrapper.is-#{$name}.focus .ts-control {
+		border-color: var(--bulma-#{$name});
+		box-shadow: 0 0 0 var(--bulma-input-focus-shadow-size, 0.125em)
+			hsla(var(--bulma-#{$name}-h), var(--bulma-#{$name}-s), var(--bulma-#{$name}-l), 0.25);
+	}
+}
+
+// Tom Select adds `.invalid` to the wrapper for an invalid bound <select> —
+// mirror Bulma's is-danger.
+.ts-wrapper.invalid .ts-control {
+	border-color: var(--bulma-danger, #f14668);
+}
+.ts-wrapper.invalid.focus .ts-control {
+	box-shadow: 0 0 0 var(--bulma-input-focus-shadow-size, 0.125em)
+		hsla(var(--bulma-danger-h, 348), var(--bulma-danger-s, 86%), var(--bulma-danger-l, 61%), 0.25);
+}
+
+// --- Bulma .control icon slots ---------------------------------------------
+// Wrap the <select> in `<div class="control has-icons-left">` with an
+// `<span class="icon is-left">`, exactly like a native Bulma input.
+.control.has-icons-left .ts-control {
+	padding-left: var(--bulma-control-height, 2.5em) !important;
+}
+.control.has-icons-right .ts-control {
+	padding-right: var(--bulma-control-height, 2.5em) !important;
+}
+.control.has-icons-left .icon,
+.control.has-icons-right .icon {
+	position: absolute;
+	top: 0;
+	z-index: 4;
+	height: var(--bulma-control-height, 2.5em);
+	width: var(--bulma-control-height, 2.5em);
+	color: var(--bulma-input-icon-color, #b5b5b5);
+	pointer-events: none;
+}
+.control.has-icons-left .icon {
+	left: 0;
+}
+.control.has-icons-right .icon {
+	right: 0;
+}
+
+// --- Loading spinner (Bulma .is-loading; also Tom Select's own `.loading`) --
+// Placed on the wrapper, not the control, because single-select uses
+// .ts-control::after for the caret.
+.ts-wrapper.is-loading::after,
+.ts-wrapper.loading::after {
+	content: '';
+	position: absolute;
+	top: calc(50% - 0.5em);
+	right: 0.75em;
+	display: block;
+	height: 1em;
+	width: 1em;
+	border: 2px solid var(--bulma-border, #dbdbdb);
+	border-right-color: transparent;
+	border-top-color: transparent;
+	border-radius: 9999px;
+	animation: ts-bulma-spin 0.5s infinite linear;
+}
+.ts-wrapper.is-loading.single .ts-control::after,
+.ts-wrapper.loading.single .ts-control::after {
+	display: none; // hide the caret while the spinner is shown
+}
+
+@keyframes ts-bulma-spin {
+	from {
+		transform: rotate(0);
+	}
+	to {
+		transform: rotate(359deg);
+	}
+}

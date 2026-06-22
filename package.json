@@ -1,0 +1,31 @@
+{
+  "name": "tom-select-bulma",
+  "version": "0.1.0",
+  "description": "A Bulma theme for Tom Select — a search/autocomplete/tagging select that looks native in Bulma and tracks light/dark themes via Bulma's CSS variables.",
+  "license": "MIT",
+  "keywords": [
+    "bulma",
+    "tom-select",
+    "tomselect",
+    "select",
+    "combobox",
+    "autocomplete",
+    "dropdown",
+    "theme"
+  ],
+  "files": [
+    "dist",
+    "src"
+  ],
+  "scripts": {
+    "build": "sass --load-path=node_modules --no-source-map --silence-deprecation=import src/tom-select.bulma.scss dist/tom-select.bulma.css",
+    "build:min": "sass --load-path=node_modules --no-source-map --silence-deprecation=import --style=compressed src/tom-select.bulma.scss dist/tom-select.bulma.min.css",
+    "watch": "sass --load-path=node_modules --watch --silence-deprecation=import src/tom-select.bulma.scss dist/tom-select.bulma.css",
+    "dist": "npm run build && npm run build:min"
+  },
+  "devDependencies": {
+    "sass": "^1.77.0",
+    "tom-select": "^2.3.1",
+    "bulma": "^1.0.0"
+  }
+}
