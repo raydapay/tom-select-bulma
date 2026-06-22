@@ -1,5 +1,7 @@
 # tom-select.bulma
 
+### ▶ [Live demo &amp; example gallery](https://raydapay.github.io/tom-select-bulma/)
+
 A [Bulma](https://bulma.io) theme for [Tom Select](https://tom-select.js.org) — the
 lightweight, framework-agnostic select/autocomplete/tagging widget. Gives you Tom Select's
 search, multi-select, remote loading and create-on-the-fly while looking like a native Bulma
@@ -83,9 +85,11 @@ document.documentElement.setAttribute('data-theme', 'dark');
 
 ## Live demo
 
+**→ https://raydapay.github.io/tom-select-bulma/**
+
 The full example gallery — single / multi / option groups / tagging / remote / custom
-rendering / icons / sizes / colours / loading, with a light–dark–auto theme switcher — lives in
-[`docs/index.html`](docs/index.html). Open it in a browser (it loads Bulma and Tom Select from a
+rendering / icons / sizes / colours / loading, with a light–dark–auto theme switcher. The source
+is [`docs/index.html`](docs/index.html); open it in a browser (it loads Bulma and Tom Select from a
 CDN), or serve it locally:
 
 ```bash
@@ -95,9 +99,10 @@ npx serve docs               # or any static server, then open the printed URL
 
 ### Hosting it on GitHub Pages
 
-The `docs/` folder is a self-contained, Pages-ready site. To publish it: in the repo's
-**Settings → Pages**, set the source to **`main` / `docs`**. Note GitHub Pages on a **private**
-repo requires a paid plan (Pro/Team/Enterprise); on a free account, make the repo public first.
+This site is published from the `docs/` folder via GitHub Pages (**Settings → Pages**, source
+**`main` / `docs`**); every push to `main` that touches `docs/` redeploys it. Note GitHub Pages on
+a **private** repo requires a paid plan (Pro/Team/Enterprise) — on a free account the repo must be
+public.
 
 ## Project layout
 
