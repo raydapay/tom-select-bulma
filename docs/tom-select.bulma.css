@@ -672,6 +672,37 @@
   right: 0;
 }
 
+.control.has-icons-start .icon,
+.control.has-icons-end .icon {
+  position: absolute;
+  top: 0;
+  z-index: 4;
+  height: var(--bulma-control-height, 2.5em);
+  width: var(--bulma-control-height, 2.5em);
+  color: var(--bulma-input-icon-color, #b5b5b5);
+  pointer-events: none;
+}
+
+.control.has-icons-start .input,
+.control.has-icons-start .select select,
+.control.has-icons-start .ts-control {
+  padding-inline-start: var(--bulma-control-height, 2.5em) !important;
+}
+
+.control.has-icons-start .icon.is-start {
+  inset-inline-start: 0;
+}
+
+.control.has-icons-end .input,
+.control.has-icons-end .select select,
+.control.has-icons-end .ts-control {
+  padding-inline-end: var(--bulma-control-height, 2.5em) !important;
+}
+
+.control.has-icons-end .icon.is-end {
+  inset-inline-end: 0;
+}
+
 .field.has-addons .control:not(:first-child):not(:last-child) .ts-control {
   border-radius: 0;
 }

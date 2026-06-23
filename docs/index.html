@@ -244,10 +244,14 @@
 					<div class="column is-half">
 						<div class="box">
 							<p class="demo-label">Colour states &amp; loading</p>
-							<p class="demo-note"><code>is-primary</code> … <code>is-danger</code>, plus <code>is-loading</code>.</p>
+							<p class="demo-note">All 11 Bulma input colours (<code>is-white</code>…<code>is-danger</code>), plus <code>is-loading</code>.</p>
 							<div class="mb-2"><select class="is-primary" id="c1" placeholder="is-primary"><option>Primary</option><option>B</option></select></div>
+							<div class="mb-2"><select class="is-link" id="c5" placeholder="is-link"><option>Link</option><option>B</option></select></div>
+							<div class="mb-2"><select class="is-info" id="c6" placeholder="is-info"><option>Info</option><option>B</option></select></div>
 							<div class="mb-2"><select class="is-success" id="c2" placeholder="is-success"><option>Success</option><option>B</option></select></div>
+							<div class="mb-2"><select class="is-warning" id="c7" placeholder="is-warning"><option>Warning</option><option>B</option></select></div>
 							<div class="mb-2"><select class="is-danger" id="c3" placeholder="is-danger"><option>Danger</option><option>B</option></select></div>
+							<div class="mb-2"><select class="is-dark" id="c8" placeholder="is-dark"><option>Dark</option><option>B</option></select></div>
 							<div><select id="c4" placeholder="loading…"><option>loading…</option><option>B</option></select></div>
 						</div>
 					</div>
@@ -288,7 +292,7 @@
 					</div>
 					<div class="column is-half">
 						<div class="box">
-							<p class="demo-label">مع أيقونة (<code>has-icons-left</code>)</p>
+							<p class="demo-label">أيقونة فيزيائية (تبقى يساراً) (<code>has-icons-left</code>)</p>
 							<div class="control has-icons-left">
 								<select id="r-icon" placeholder="ابحث عن مستخدم…" autocomplete="off">
 									<option value="">ابحث عن مستخدم…</option>
@@ -296,6 +300,19 @@
 									<option value="f">فاطمة</option>
 								</select>
 								<span class="icon is-left"><i style="font-style: normal">@</i></span>
+							</div>
+						</div>
+					</div>
+					<div class="column is-half">
+						<div class="box">
+							<p class="demo-label">أيقونة منطقية (تنقلب في RTL) (<code>has-icons-start</code>)</p>
+							<div class="control has-icons-start">
+								<select id="r-icon-start" placeholder="ابحث عن مستخدم…" autocomplete="off">
+									<option value="">ابحث عن مستخدم…</option>
+									<option value="a">أحمد</option>
+									<option value="f">فاطمة</option>
+								</select>
+								<span class="icon is-start"><i style="font-style: normal">@</i></span>
 							</div>
 						</div>
 					</div>
@@ -371,7 +388,7 @@
 			new TomSelect('#addons', {});
 			new TomSelect('#disabled', {}); // Tom Select reads the disabled attr → .disabled wrapper
 			['#z1', '#z2', '#z3', '#z4'].forEach((s) => new TomSelect(s, {}));
-			['#c1', '#c2', '#c3'].forEach((s) => new TomSelect(s, {}));
+			['#c1', '#c2', '#c3', '#c5', '#c6', '#c7', '#c8'].forEach((s) => new TomSelect(s, {}));
 
 			// Custom rendering with a colour dot + secondary text.
 			new TomSelect('#render', {
@@ -427,6 +444,7 @@
 			new TomSelect('#r-single', {});
 			new TomSelect('#r-multi', { plugins: ['remove_button'] });
 			new TomSelect('#r-icon', {});
+			new TomSelect('#r-icon-start', {});
 			new TomSelect('#r-addons', {});
 		</script>
 	</body>

@@ -61,12 +61,14 @@ for theme in light dark; do
 <select id="s" placeholder="اختر إطار العمل…"><option value="">اختر إطار العمل…</option><option>فلاسك</option><option>دجانغو</option></select></div></div>
 <div class="column is-half"><div class="box"><p class="has-text-weight-semibold mb-2">اختيار متعدد — وسوم</p>
 <select id="m" multiple><option value="py" selected>بايثون</option><option value="js" selected>جافاسكريبت</option><option value="rb">روبي</option></select></div></div>
-<div class="column is-half"><div class="box"><p class="has-text-weight-semibold mb-2">مع أيقونة</p>
+<div class="column is-half"><div class="box"><p class="has-text-weight-semibold mb-2">أيقونة فيزيائية — has-icons-left (تبقى يساراً)</p>
 <div class="control has-icons-left"><select id="i" placeholder="ابحث عن مستخدم…"><option value="">ابحث عن مستخدم…</option><option>أحمد</option></select><span class="icon is-left"><i style="font-style:normal">@</i></span></div></div></div>
+<div class="column is-half"><div class="box"><p class="has-text-weight-semibold mb-2">أيقونة منطقية — has-icons-start (تنقلب يميناً)</p>
+<div class="control has-icons-start"><select id="is" placeholder="ابحث عن مستخدم…"><option value="">ابحث عن مستخدم…</option><option>أحمد</option></select><span class="icon is-start"><i style="font-style:normal">@</i></span></div></div></div>
 <div class="column is-half"><div class="box"><p class="has-text-weight-semibold mb-2">مرفق بزر</p>
 <div class="field has-addons"><div class="control is-expanded"><select id="a" placeholder="بحث…"><option value="">بحث…</option><option>مستودع</option></select></div><div class="control"><button class="button is-primary">انطلق</button></div></div></div></div>
 </div></div>
-<script>new TomSelect('#s',{});new TomSelect('#m',{plugins:['remove_button']});new TomSelect('#i',{});new TomSelect('#a',{});</script>
+<script>new TomSelect('#s',{});new TomSelect('#m',{plugins:['remove_button']});new TomSelect('#i',{});new TomSelect('#is',{});new TomSelect('#a',{});</script>
 </body></html>
 EOF
 	shot --window-size=900,420 --virtual-time-budget=2800 \

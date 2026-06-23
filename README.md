@@ -72,6 +72,7 @@ Put Bulma's usual classes on the original `<select>` (Tom Select copies them ont
 | Rounded        | `class="is-rounded"`                                                                  |
 | Loading        | `class="is-loading"` on the wrapper (also responds to Tom Select's own `.loading`)   |
 | Left/right icon | wrap in `<div class="control has-icons-left">` + `<span class="icon is-left">`      |
+| RTL-aware icon | `<div class="control has-icons-start">` + `<span class="icon is-start">` (or `-end`) — flips with `dir` (see RTL below) |
 | Multi-select   | native `multiple` attr — chips render as Bulma tags; add the `remove_button` plugin   |
 | Validation     | an invalid bound `<select>` gets Tom Select's `.invalid` → rendered as `is-danger`    |
 
@@ -94,9 +95,21 @@ follow suit.
 | --- | --- |
 | ![rtl light](docs/screenshot-rtl-light.png) | ![rtl dark](docs/screenshot-rtl-dark.png) |
 
-> `has-icons-left` / `has-icons-right` are **physical** by Bulma's own convention — a left icon
-> stays on the left in RTL. Pick the side you want; the control's padding follows the icon either
-> way.
+**Icons in RTL.** `has-icons-left` / `has-icons-right` are **physical** by Bulma's own convention —
+a left icon stays on the left in RTL (this theme matches Bulma exactly). If you want an icon that
+**follows the writing direction**, use the logical variants this theme adds:
+
+```html
+<div class="control has-icons-start">
+  <select id="search">…</select>
+  <span class="icon is-start"><!-- … --></span>
+</div>
+```
+
+`has-icons-start` / `has-icons-end` (with `icon.is-start` / `is-end`) sit on the inline start/end
+and flip automatically under `dir="rtl"` — start = left in LTR, right in RTL. They work on a native
+Bulma `.input` / `.select` too, so they're a usable forward-port of the fix proposed upstream
+([jgthms/bulma#3981](https://github.com/jgthms/bulma/issues/3981)).
 
 ## Live demo
 
@@ -168,8 +181,9 @@ equivalent, so reproducing them would look foreign in a Bulma page.
 ## Notes / limitations
 
 - Built against **Bulma 1.0** (CSS-variable era) and **Tom Select v2**.
-- A right-side icon (`has-icons-right`) overlaps the single-select caret; prefer left icons, or use a
-  multi-select where there is no caret.
+- A trailing-side icon (`has-icons-right`, or `has-icons-end` which lands on the right in LTR)
+  overlaps the single-select caret; prefer a leading icon, or use a multi-select where there is no
+  caret.
 - The `dropdown_header` plugin's divider uses a CSS function the upstream SCSS emits in a non-standard
   form; the header still works, only that one divider tint may be unset.
 - **`is-light` / `is-soft` / `is-bold`**: these are Bulma *component* variants (buttons, tags,
