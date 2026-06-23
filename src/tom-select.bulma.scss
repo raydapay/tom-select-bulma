@@ -95,7 +95,12 @@ $select-width-item-border:						0;
 // 2 + 3. Bulma runtime integration layer.
 // ---------------------------------------------------------------------------
 
-$ts-bulma-colors: primary, link, info, success, warning, danger;
+// The full set of colour modifiers Bulma applies to `.input` / `.select`
+// (it tints border + arrow). We mirror that surface with a coloured border +
+// focus ring, the dominant signal for a form control.
+// Quoted so Sass treats "white"/"black" as plain idents, not colour keywords.
+$ts-bulma-colors: "white", "black", "light", "dark", "text", "primary", "link",
+	"info", "success", "warning", "danger";
 
 // --- Control: sit flush inside Bulma's box model ---------------------------
 .ts-control {

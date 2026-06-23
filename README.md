@@ -68,7 +68,7 @@ Put Bulma's usual classes on the original `<select>` (Tom Select copies them ont
 | Feature        | How                                                                                  |
 | -------------- | ------------------------------------------------------------------------------------ |
 | Sizes          | `class="is-small \| is-medium \| is-large"`                                          |
-| Colour states  | `class="is-primary \| is-link \| is-info \| is-success \| is-warning \| is-danger"`  |
+| Colour states  | the full Bulma input set: `is-white`, `is-black`, `is-light`, `is-dark`, `is-text`, `is-primary`, `is-link`, `is-info`, `is-success`, `is-warning`, `is-danger` (coloured border + focus ring) |
 | Rounded        | `class="is-rounded"`                                                                  |
 | Loading        | `class="is-loading"` on the wrapper (also responds to Tom Select's own `.loading`)   |
 | Left/right icon | wrap in `<div class="control has-icons-left">` + `<span class="icon is-left">`      |
@@ -153,7 +153,7 @@ everything that maps to a Bulma idiom, and goes further where Bulma offers more:
 | Placeholder, transitions, shadow | ✓ | ✓ | |
 | Multi-select chips + `remove_button` | ✓ | ✓ | Ours render as Bulma tags. |
 | Sizes | sm, lg | small, **medium**, large | Bootstrap only has two sizes. |
-| Colour states | invalid / valid | all six `is-*` + `.invalid` | |
+| Colour states | invalid / valid | all 11 input colours (`is-white`…`is-danger`) + `.invalid` | |
 | Disabled | ✓ | ✓ | |
 | Option-group headers + divider | ✓ | ✓ | |
 | `has-addons` / `input-group` grouping | ✓ | ✓ | Inner corners square up against the neighbour. |
@@ -172,6 +172,11 @@ equivalent, so reproducing them would look foreign in a Bulma page.
   multi-select where there is no caret.
 - The `dropdown_header` plugin's divider uses a CSS function the upstream SCSS emits in a non-standard
   form; the header still works, only that one divider tint may be unset.
+- **`is-light` / `is-soft` / `is-bold`**: these are Bulma *component* variants (buttons, tags,
+  notifications) — Bulma does **not** apply them to `.input` / `.select`, so they have no meaning on
+  the control. (`is-light` as a colour state *is* supported — it's the standalone "light" colour,
+  listed above.) The multi-select chips render as Bulma tags but their classes are managed by Tom
+  Select, so per-chip variants aren't exposed.
 
 ## License
 
