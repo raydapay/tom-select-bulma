@@ -34,8 +34,23 @@ degrades gracefully if Bulma is absent.
 
 ## Install
 
+### CDN — no build step
+
+jsDelivr serves it straight from this repo's release tag:
+
+```html
+<link rel="stylesheet"
+  href="https://cdn.jsdelivr.net/gh/raydapay/tom-select-bulma@v0.1.0/dist/tom-select.bulma.min.css">
+```
+
+(You also need Bulma and Tom Select themselves — see [Usage](#usage).)
+
+### With a bundler
+
+Install from GitHub, pinned to a tag:
+
 ```bash
-npm install tom-select-bulma
+npm install github:raydapay/tom-select-bulma#v0.1.0
 ```
 
 `bulma` and `tom-select` are peer dependencies — install them alongside if you haven't:
@@ -45,8 +60,7 @@ npm install bulma tom-select
 ```
 
 The compiled CSS ships in `dist/` (`tom-select.bulma.css` + `.min.css`); the SCSS source is in
-`src/` (exposed as `tom-select-bulma/scss` if you want to override Tom Select's `!default`
-variables yourself).
+`src/` (import `tom-select-bulma/scss` to override Tom Select's `!default` variables yourself).
 
 ### Building from source
 
