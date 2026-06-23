@@ -224,6 +224,11 @@ equivalent, so reproducing them would look foreign in a Bulma page.
   listed above.) The multi-select chips render as Bulma tags but their classes are managed by Tom
   Select, so per-chip variants aren't exposed.
 
+## Contributing
+
+This repo is agents-first — see [`AGENTS.md`](AGENTS.md) for the architecture, invariants, and
+build/verify loop before making changes.
+
 ## License
 
 MIT.
