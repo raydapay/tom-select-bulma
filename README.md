@@ -32,6 +32,13 @@ to Bulma tokens at runtime, the control follows Bulma's `data-theme="dark"` togg
 hardcoded colours** — every colour has a `var(--bulma-*)` with a Bulma-light fallback so it still
 degrades gracefully if Bulma is absent.
 
+A common alternative is to **fork Tom Select's base CSS** and hand-edit it (e.g. replacing
+properties with framework utilities + `dark:` variants). That works, but it copies the base, so it
+needs manual re-syncing on every Tom Select release, bakes in fixed colour values, and needs a
+dark-mode variant written on every rule. This theme instead **imports** the base and binds to
+runtime tokens: Tom Select upgrades flow through on a rebuild, and dark mode / a customized Bulma
+palette are tracked automatically with no per-rule work.
+
 ## Install
 
 ### CDN — no build step
