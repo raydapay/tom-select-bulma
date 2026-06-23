@@ -3,6 +3,15 @@
   "version": "0.1.0",
   "description": "A Bulma theme for Tom Select — a search/autocomplete/tagging select that looks native in Bulma and tracks light/dark themes via Bulma's CSS variables.",
   "license": "MIT",
+  "author": "Ray",
+  "homepage": "https://raydapay.github.io/tom-select-bulma/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/raydapay/tom-select-bulma.git"
+  },
+  "bugs": {
+    "url": "https://github.com/raydapay/tom-select-bulma/issues"
+  },
   "keywords": [
     "bulma",
     "tom-select",
@@ -11,7 +20,21 @@
     "combobox",
     "autocomplete",
     "dropdown",
-    "theme"
+    "theme",
+    "rtl"
+  ],
+  "style": "dist/tom-select.bulma.css",
+  "sass": "src/tom-select.bulma.scss",
+  "exports": {
+    ".": "./dist/tom-select.bulma.css",
+    "./css": "./dist/tom-select.bulma.css",
+    "./min": "./dist/tom-select.bulma.min.css",
+    "./scss": "./src/tom-select.bulma.scss",
+    "./package.json": "./package.json"
+  },
+  "sideEffects": [
+    "*.css",
+    "*.scss"
   ],
   "files": [
     "dist",
@@ -23,7 +46,12 @@
     "build:docs": "sass --load-path=node_modules --no-source-map --silence-deprecation=import src/tom-select.bulma.scss docs/tom-select.bulma.css",
     "watch": "sass --load-path=node_modules --watch --silence-deprecation=import src/tom-select.bulma.scss dist/tom-select.bulma.css",
     "dist": "npm run build && npm run build:min && npm run build:docs",
-    "screenshots": "bash scripts/screenshots.sh"
+    "screenshots": "bash scripts/screenshots.sh",
+    "prepublishOnly": "npm run dist"
+  },
+  "peerDependencies": {
+    "bulma": "^1.0.0",
+    "tom-select": "^2.0.0"
   },
   "devDependencies": {
     "sass": "^1.77.0",

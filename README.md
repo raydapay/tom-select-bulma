@@ -10,6 +10,8 @@ control, **including automatic light/dark theme support** via Bulma's CSS variab
 Tom Select ships `default`, `bootstrap4` and `bootstrap5` themes — but no Bulma one. This is that
 missing theme.
 
+> Community theme — not affiliated with or endorsed by the Tom Select or Bulma projects.
+
 | Light | Dark |
 | --- | --- |
 | ![light mode](docs/screenshot-light.png) | ![dark mode](docs/screenshot-dark.png) |
@@ -33,7 +35,23 @@ degrades gracefully if Bulma is absent.
 ## Install
 
 ```bash
-npm install   # installs sass + tom-select + bulma (dev)
+npm install tom-select-bulma
+```
+
+`bulma` and `tom-select` are peer dependencies — install them alongside if you haven't:
+
+```bash
+npm install bulma tom-select
+```
+
+The compiled CSS ships in `dist/` (`tom-select.bulma.css` + `.min.css`); the SCSS source is in
+`src/` (exposed as `tom-select-bulma/scss` if you want to override Tom Select's `!default`
+variables yourself).
+
+### Building from source
+
+```bash
+npm install   # sass + tom-select + bulma (dev)
 npm run dist  # builds dist/tom-select.bulma.css and .min.css
 ```
 
