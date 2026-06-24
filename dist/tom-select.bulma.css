@@ -538,6 +538,10 @@
   padding-right: 1.25em;
 }
 
+.ts-wrapper.is-fullwidth {
+  width: 100%;
+}
+
 .ts-wrapper.is-white .ts-control {
   border-color: var(--bulma-white, var(--bulma-border));
 }

@@ -67,6 +67,14 @@ npm run screenshots    # regenerates the 4 screenshots (auto-installs an Arabic 
    as the separate `has-icons-start` / `has-icons-end` classes — use/extend those instead.
 5. **Never commit `node_modules/`** (gitignored) and keep secrets/PII out (commits use a GitHub
    noreply email by design).
+6. **Update `CHANGELOG.md` on every change that affects the compiled CSS or public behaviour.**
+   Add a bullet under the `## [Unreleased]` heading (in the right `Added` / `Changed` / `Fixed`
+   group), in the **same commit** as the change. Docs-only or internal-tooling changes are exempt.
+   When cutting a release, rename `[Unreleased]` to the new version + date and add a fresh empty
+   `[Unreleased]`.
+
+CI (`.github/workflows/ci.yml`) runs `npm ci && npm run dist` and **fails if committed CSS is stale**
+— so rule #3 is enforced automatically on every push/PR. Run `npm run dist` before committing.
 
 ## Common tasks
 
@@ -78,8 +86,9 @@ npm run screenshots    # regenerates the 4 screenshots (auto-installs an Arabic 
   `npm run screenshots`.
 - **Change spacing/metrics:** prefer the `$select-*` variable overrides at the top (em-based) so
   sizes scale; the base consumes them.
-- **Cut a release:** `npm run dist` → commit → `git tag -a vX.Y.Z` → `git push --tags` →
-  `gh release create`. jsDelivr serves from the tag immediately; cdnjs autoupdates from tags.
+- **Cut a release:** move `[Unreleased]` notes to a new `vX.Y.Z` section in `CHANGELOG.md` →
+  `npm run dist` → commit → `git tag -a vX.Y.Z` → `git push --tags` → `gh release create`.
+  jsDelivr serves from the tag immediately; cdnjs autoupdates from tags.
 
 ## Upstream relationship
 

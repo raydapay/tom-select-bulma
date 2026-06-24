@@ -229,6 +229,11 @@ $ts-bulma-colors: "white", "black", "light", "dark", "text", "primary", "link",
 	padding-right: 1.25em;
 }
 
+// --- Full width (mirrors Bulma's .select.is-fullwidth) ---------------------
+.ts-wrapper.is-fullwidth {
+	width: 100%;
+}
+
 // --- Colour state modifiers ------------------------------------------------
 @each $name in $ts-bulma-colors {
 	.ts-wrapper.is-#{$name} .ts-control {

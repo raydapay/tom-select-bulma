@@ -1,0 +1,26 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - run: npm run dist
+      - name: Verify committed CSS matches source
+        run: |
+          if ! git diff --quiet -- dist docs/tom-select.bulma.css; then
+            echo "::error::Compiled CSS is out of date. Run 'npm run dist' and commit the result."
+            git --no-pager diff --stat -- dist docs/tom-select.bulma.css
+            exit 1
+          fi
+          echo "dist/ is in sync with src/."
