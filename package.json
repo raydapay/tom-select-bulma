@@ -1,6 +1,6 @@
 {
   "name": "tom-select-bulma",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "A Bulma theme for Tom Select — a search/autocomplete/tagging select that looks native in Bulma and tracks light/dark themes via Bulma's CSS variables.",
   "license": "MIT",
   "author": "Ray",

@@ -47,7 +47,7 @@ jsDelivr serves it straight from this repo's release tag:
 
 ```html
 <link rel="stylesheet"
-  href="https://cdn.jsdelivr.net/gh/raydapay/tom-select-bulma@v0.1.0/dist/tom-select.bulma.min.css">
+  href="https://cdn.jsdelivr.net/gh/raydapay/tom-select-bulma@v0.2.0/dist/tom-select.bulma.min.css">
 ```
 
 (You also need Bulma and Tom Select themselves — see [Usage](#usage).)
@@ -57,7 +57,7 @@ jsDelivr serves it straight from this repo's release tag:
 Install from GitHub, pinned to a tag:
 
 ```bash
-npm install github:raydapay/tom-select-bulma#v0.1.0
+npm install github:raydapay/tom-select-bulma#v0.2.0
 ```
 
 `bulma` and `tom-select` are peer dependencies — install them alongside if you haven't:

@@ -5,6 +5,8 @@ All notable changes to this project are documented here. Format follows
 
 ## [Unreleased]
 
+## [0.2.0] — 2026-06-24
+
 ### Added
 - `is-fullwidth` modifier (mirrors Bulma's `.select.is-fullwidth`).
 
@@ -24,5 +26,6 @@ First release.
 - Full RTL support via CSS logical properties.
 - Demo gallery (GitHub Pages) and reproducible screenshot script.
 
-[Unreleased]: https://github.com/raydapay/tom-select-bulma/compare/v0.1.0...HEAD
+[Unreleased]: https://github.com/raydapay/tom-select-bulma/compare/v0.2.0...HEAD
+[0.2.0]: https://github.com/raydapay/tom-select-bulma/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/raydapay/tom-select-bulma/releases/tag/v0.1.0
