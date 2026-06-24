@@ -114,6 +114,12 @@ Put Bulma's usual classes on the original `<select>` (Tom Select copies them ont
 | RTL-aware icon | `<div class="control has-icons-start">` + `<span class="icon is-start">` (or `-end`) — flips with `dir` (see RTL below) |
 | Multi-select   | native `multiple` attr — chips render as Bulma tags; add the `remove_button` plugin   |
 | Validation     | an invalid bound `<select>` gets Tom Select's `.invalid` → rendered as `is-danger`    |
+| Full width     | `class="is-fullwidth"`                                                                |
+
+Bulma's layout modifiers work natively (no theme code) because the control is just a normal child:
+`.control.is-loading`, `.field.is-grouped`, `.field.is-horizontal`, `.field.has-addons-centered/-right`.
+See [`DECISIONS.md`](DECISIONS.md) for the full coverage protocol — what's implemented, what works
+natively, and what's deliberately skipped and why.
 
 ## Dark mode
 

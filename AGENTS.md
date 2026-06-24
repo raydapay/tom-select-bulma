@@ -81,9 +81,11 @@ CI (`.github/workflows/ci.yml`) runs `npm ci && npm run dist` and **fails if com
 - **Add/adjust a colour state:** edit the `$ts-bulma-colors` list (quoted strings) — the `@each`
   loop generates border + focus-ring rules. Only works for colours Bulma exposes as `--bulma-<name>`
   and `--bulma-<name>-h/s/l`.
-- **Add a Bulma modifier (size/state/etc.):** add a rule in the integration layer using
-  `var(--bulma-*)`; mirror an existing one. Add an example to `docs/index.html` and re-run
-  `npm run screenshots`.
+- **Add a Bulma modifier (size/state/etc.):** first check `DECISIONS.md` — coverage is already
+  complete for Bulma 1.0, and several modifiers are deliberately skipped (with reasons) or work
+  natively. Only implement a modifier Bulma actually applies to `.select`/`.control`/`.field`. If
+  you do add one: a rule in the integration layer using `var(--bulma-*)`, mirror an existing one,
+  add a demo example, re-run `npm run screenshots`, and update `DECISIONS.md` + `CHANGELOG.md`.
 - **Change spacing/metrics:** prefer the `$select-*` variable overrides at the top (em-based) so
   sizes scale; the base consumes them.
 - **Cut a release:** move `[Unreleased]` notes to a new `vX.Y.Z` section in `CHANGELOG.md` →
